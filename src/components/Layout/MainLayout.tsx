@@ -1,8 +1,11 @@
+import SideBar from "./SideBar"
 
 
 const MainLayout = () => {
   return (
-    <div>MainLayout</div>
+    <div>
+        <SideBar/>
+    </div>
   )
 }
 

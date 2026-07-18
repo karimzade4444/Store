@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import SideBar from "./components/Layout/SideBar";
 import MainLayout from "./components/Layout/MainLayout";
 import AdminPanel from "./components/pages/adminPanel/adminPanel";
@@ -22,7 +22,7 @@ const App = () => {
       ],
     },
   ]);
-  return <div></div>;
+  return <RouterProvider router={router}/>;
 };
 
 export default App;
