@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <div className="w-full max-h-25 h-fit bg-secondary border-b-2 p-5">
       <CustomInput
-        start={<Search size={200} />}
+        start={<Search className="size-10 pr-3 " color="black"/>}
         placeholder="Search"
         className="bg-primary-foreground py-5"
       />
