@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 const Header = () => {
   return (
     <div className="w-full max-h-25 h-fit bg-secondary border-b-2 p-5">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center pl-5 pr-5 ">
         <CustomInput
           start={<Search className="size-10 pr-3 " color="black" />}
           placeholder="Search"
