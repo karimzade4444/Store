@@ -3,6 +3,13 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100..900;1,100..900&family=Ysabeau+SC:wght@1..1000&display=swap");
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+  --font-ysabeau: "Ysabeau SC", sans-serif;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
