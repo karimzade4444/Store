@@ -14,7 +14,7 @@ const SideBar = () => {
     },
     {
       icon: <ChartNoAxesGantt />,
-      link: "/products",
+      link: "/",
       id: 2,
     },
   ];
@@ -29,7 +29,7 @@ const SideBar = () => {
                 "hover:text-primary-foreground/40 ",
                 el.link == location.pathname
                   ? "text-primary-foreground border-l-4  px-5 "
-                  : "text-primary-foreground/70 duration-300",
+                  : "text-primary-foreground/70 duration-300 ",
               )}
             >
               {el.icon}

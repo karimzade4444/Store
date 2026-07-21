@@ -16,7 +16,6 @@ const App = () => {
         },
         {
           index: true,
-          path: "/products",
           element: <Products />,
         },
       ],
