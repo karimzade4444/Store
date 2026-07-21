@@ -1,4 +1,4 @@
-import { Bell, Search } from "lucide-react";
+import { Bell, Search, Settings } from "lucide-react";
 import CustomInput from "../custom/CustomInput";
 import { Button } from "../ui/button";
 
@@ -7,15 +7,31 @@ import { Button } from "../ui/button";
 const Header = () => {
   return (
     <div className="w-full max-h-25 h-fit bg-secondary border-b-2 p-5">
-      <div>
+      <div className="flex justify-between items-center">
         <CustomInput
           start={<Search className="size-10 pr-3 " color="black" />}
           placeholder="Search"
           className="bg-primary-foreground py-5 w-120"
         />
-        <Button>
-          <Bell />
-        </Button>
+        <div className="flex justify-center items-center gap-5">
+          <Button>
+            <Bell />
+          </Button>
+          <Button>
+            <Settings />
+          </Button>
+          <div className="flex justify-center items-center gap-5">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQzFWxj0S7AVqUL5nhSDNmjWq5tv_zm1NdvaBUkM3SJmefg9llPLGi2Dg&s=10"
+              alt="fdf"
+              className="w-12 h-12 rounded-xl"
+            />
+            <div>
+              <p>Karimzoda</p>
+              <p>Admin</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
