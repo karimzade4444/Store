@@ -1,9 +1,25 @@
+import { getProducts } from "@/lib/api/api";
+import {  useQuery } from "@tanstack/react-query";
 
-
-const Products = () => {
-  return (
-    <div>Products</div>
-  )
+interface ISearch{
+  search:string
 }
 
-export default Products
+const Products = ({search}:ISearch) => {
+  
+  const {data} = useQuery({
+    queryKey:["getProducts", search],
+    queryFn: ()=>getProducts(search),
+  });
+  return (
+    <div>
+      {data?.map((el)=>(
+        <div key={el.id}>
+          
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Products;
