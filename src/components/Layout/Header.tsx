@@ -20,15 +20,15 @@ const Header = () => {
           <Button>
             <Settings />
           </Button>
-          <div className="flex justify-center items-center gap-5">
+          <div className="flex justify-center items-center gap-2">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQzFWxj0S7AVqUL5nhSDNmjWq5tv_zm1NdvaBUkM3SJmefg9llPLGi2Dg&s=10"
               alt="fdf"
               className="w-12 h-12 rounded-xl"
             />
             <div>
-              <p>Karimzoda</p>
-              <p>Admin</p>
+              <p className=" font-black">Karimzoda</p>
+              <p className=" text-black/50">Admin</p>
             </div>
           </div>
         </div>
