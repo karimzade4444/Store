@@ -12,9 +12,9 @@ const Products = ({search}:ISearch) => {
     queryFn: ()=>getProducts(search),
   });
   return (
-    <div>
+    <div className=" grid grid-cols-4 gap-5 p-5">
       {data?.map((el)=>(
-        <div key={el.id}>
+        <div key={el.id} className="w-80 h-90 bg-card">
           
         </div>
       ))}
