@@ -9,3 +9,4 @@ export const useSearchStore = create<SearchStore>((set) => ({
   search: "",
   setSearch: (value) => set({ search: value }),
 }));
+
