@@ -28,7 +28,7 @@ const SideBar = () => {
   ];
 
   return (
-    <div className="max-w-25 w-fit min-h-screen bg-foreground fixed top-0 left-0">
+    <div className="max-w-30 w-fit min-h-screen bg-foreground fixed top-0 left-0 z-20">
       <div className=" py-7 flex justify-center items-center flex-col gap-5">
         {navigationItems.map((el) => (
           <Link to={el.link} key={el.id}>
