@@ -23,9 +23,9 @@ const Orders = () => {
               <div className="p-5 leading-12">
                 <p className=" text-2xl">{item.name}</p>
                 <div className="w-40 flex  items-center gap-5">
-                  <p>$ {Math.max(0, item.price - item.sale).toFixed(2)}</p>
+                  <p>$ {Math.max(0, (item.price - item.sale)*item.quantity).toFixed(2)}</p>
                   <p className="text-black/50 relative">
-                    $ {item.price.toFixed(2)}
+                    $ {(item.price*item.quantity).toFixed(2)}
                     <div className="w-full h-0.5 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50 z-0"></div>
                   </p>
                 </div>
