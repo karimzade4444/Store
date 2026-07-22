@@ -15,7 +15,8 @@ const AdminPanel = () => {
     item.name.toLowerCase().includes(search.toLowerCase()),
   );
   return (
-    <div className="p-10">
+    <div  className="p-10">
+      <div className="flex justify-end"><Button variant="outline" className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer">+ Add</Button></div>
       <DataTable
         records={filtered ?? []}
         columns={[
