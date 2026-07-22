@@ -16,7 +16,7 @@ const AdminPanel = () => {
   );
   return (
     <div  className="p-10">
-      <div className="flex justify-end"><Button variant="outline" className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer">+ Add</Button></div>
+      <div className="flex justify-between p-3"><p className="text-2xl font-black">ADMIN PANEL</p><Button variant="outline" className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer">+ Add</Button></div>
       <DataTable
         records={filtered ?? []}
         columns={[
