@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 
 const Orders = () => {
-  const { cart, increment, decrement } = useStore();
+  const { cart, increment, decrement, removeFromCart } = useStore();
   
 
   return (
@@ -47,7 +47,7 @@ const Orders = () => {
                   +
                 </button>
               </div>
-              <Button variant="destructive"  className="cursor-pointer" onClick={item.filter()}>X</Button>
+              <Button variant="destructive"  className="cursor-pointer" onClick={()=>removeFromCart(item.id)}>X</Button>
             </div>
           ))}
         </div>
