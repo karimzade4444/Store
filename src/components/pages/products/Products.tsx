@@ -1,5 +1,5 @@
 import OrderButton from "@/components/custom/OrderButton";
-import { useSearchStore } from "@/components/store/store";
+import { useStore } from "@/components/store/store";
 
 import { getProducts } from "@/lib/api/api";
 import {  useQuery } from "@tanstack/react-query";
@@ -7,7 +7,7 @@ import {  useQuery } from "@tanstack/react-query";
 
 
 const Products = () => {
-  const {search}=useSearchStore()
+  const {search}=useStore()
   
   const {data} = useQuery({
     queryKey:["getProducts", search],

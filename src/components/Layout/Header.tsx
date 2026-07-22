@@ -1,13 +1,13 @@
 import { Bell, Search, Settings } from "lucide-react";
 import CustomInput from "../custom/CustomInput";
 import { Button } from "../ui/button";
-import { useSearchStore } from "../store/store";
+import { useStore } from "../store/store";
 
 
 
 
 const Header = () => {
-  const { search, setSearch } = useSearchStore();
+  const { search, setSearch } = useStore();
   return (
     <div className="w-full max-h-25 h-fit bg-secondary border-b-2 p-5 fixed top-0 z-10 ">
       <div className="flex justify-between items-center pr-30">
