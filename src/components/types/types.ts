@@ -5,6 +5,7 @@ export interface NavItems {
   icon: ReactElement;
   link: string;
   id: number;
+  name: string
 }
 
 

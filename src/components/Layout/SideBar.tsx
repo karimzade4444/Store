@@ -11,11 +11,13 @@ const SideBar = () => {
       icon: <LayoutDashboard />,
       link: "/adminpanel",
       id: 1,
+      name: "Dashboard"
     },
     {
       icon: <ChartNoAxesGantt />,
       link: "/",
       id: 2,
+      name: "Products"
     },
   ];
 
@@ -26,13 +28,14 @@ const SideBar = () => {
           <Link to={el.link} key={el.id}>
             <div
               className={cn(
-                "hover:text-primary-foreground/40 ",
+                " flex justify-center items-center flex-col ",
                 el.link == location.pathname
-                  ? "text-primary-foreground border-l-4  px-5 "
-                  : "text-primary-foreground/70 duration-300 ",
+                  ? "text-primary-foreground border-l-4  px-5 flex justify-center items-center flex-col "
+                  : "hover:text-primary-foreground/40 text-primary-foreground/70 duration-300 flex justify-center items-center flex-col  ",
               )}
             >
               {el.icon}
+              <p>{el.name}</p>
             </div>
           </Link>
         ))}
