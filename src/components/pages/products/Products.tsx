@@ -21,10 +21,13 @@ const Products = ({search}:ISearch) => {
           <div className="flex justify-center items-center mt-5">
             <img src={el.img} alt="" className="w-64 h-45" />
           </div>
-          <p className="pl-5 pt-5">{el.name}</p>
+          <p className="pl-5 pt-5 text-xl">{el.name}</p>
           <div className="pl-5 flex items-center gap-5">
-            <p>$ {(el.price - el.sale).toFixed(2)}</p>
-            <p>$ {el.price.toFixed(2)}</p>
+            <p>$ {Math.max(0, el.price - el.sale).toFixed(2)}</p>
+            <p className="text-black/50 relative">
+              $ {el.price.toFixed(2)}{" "}
+              <div className="w-full h-0.5 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50"></div>
+            </p>
           </div>
         </div>
       ))}
