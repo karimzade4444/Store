@@ -6,12 +6,12 @@ const { cart } = useStore();
 
 return (
   <>
-    {cart.map((item) => (
-      <div key={item.id}>
-        <p>{item.name}</p>
-        <p>{item.quantity}</p>
-      </div>
-    ))}
+    <div>
+        <p>Order details</p>
+      {cart.map((item) => (
+        <div key={item.id}></div>
+      ))}
+    </div>
   </>
 );}
 
