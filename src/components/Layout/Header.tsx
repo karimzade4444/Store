@@ -9,7 +9,7 @@ import { useSearchStore } from "../store/store";
 const Header = () => {
   const { search, setSearch } = useSearchStore();
   return (
-    <div className="w-full max-h-25 h-fit bg-secondary border-b-2 p-5">
+    <div className="w-full max-h-25 h-fit bg-secondary border-b-2 p-5 fixed top-0">
       <div className="flex justify-between items-center pl-5 pr-5 ">
         <CustomInput
         value={search}
