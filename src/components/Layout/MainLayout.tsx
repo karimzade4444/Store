@@ -5,9 +5,11 @@ import SideBar from "./SideBar"
 
 const MainLayout = () => {
   return (
-    <div className="flex">
-      <SideBar />
-      <div className="w-full">
+    <div className="flex ">
+      <div className=" relative w-30">
+        <SideBar />
+      </div>
+      <div className="w-full relative">
         <Header />
         <Outlet />
       </div>
