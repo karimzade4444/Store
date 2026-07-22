@@ -32,7 +32,7 @@ const Products = () => {
             </p>
           </div>
           <div className="p-5">
-            <OrderButton/>
+            <OrderButton product={el}/>
           </div>
         </div>
       ))}
