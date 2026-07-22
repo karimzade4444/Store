@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { getProducts } from "@/lib/api/api";
 import {  useQuery } from "@tanstack/react-query";
 
@@ -25,9 +26,12 @@ const Products = ({search}:ISearch) => {
           <div className="pl-5 pt-2 flex items-center gap-5">
             <p>$ {Math.max(0, el.price - el.sale).toFixed(2)}</p>
             <p className="text-black/50 relative">
-              $ {el.price.toFixed(2)}{" "}
+              $ {el.price.toFixed(2)}
               <div className="w-full h-0.5 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50"></div>
             </p>
+          </div>
+          <div className="p-5">
+            <Button className="w-full h-12 text-primary text-xl cursor-pointer border-primary" variant="outline">+ Add to Order</Button>
           </div>
         </div>
       ))}
