@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+import OrderButton from "@/components/custom/OrderButton";
+
 import { getProducts } from "@/lib/api/api";
 import {  useQuery } from "@tanstack/react-query";
 
@@ -31,7 +32,7 @@ const Products = ({search}:ISearch) => {
             </p>
           </div>
           <div className="p-5">
-            <Button className="w-full h-12 text-primary text-xl cursor-pointer border-primary" variant="outline">+ Add to Order</Button>
+            <OrderButton/>
           </div>
         </div>
       ))}
