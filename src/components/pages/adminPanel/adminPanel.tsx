@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { DataTable } from "mantine-datatable";
 
 const AdminPanel = () => {
-  const { data, isLoading } = useQuery({
+  const { data} = useQuery({
     queryKey: ["products"],
     queryFn: () => getProducts(""),
   });
@@ -22,35 +22,49 @@ const AdminPanel = () => {
           {
             accessor: "id",
             title: "ID",
+            titleClassName: "text-center",
+            textAlign: "center",
           },
           {
             accessor: "img",
             title: "Image",
+            titleClassName: "text-center",
+            textAlign: "center",
             render: (record) => (
-              <img
-                src={record.img}
-                className="w-14 h-14 object-cover rounded"
-              />
+              <div className="flex justify-center">
+                <img
+                  src={record.img}
+                  className="w-14 h-14 object-cover rounded "
+                />
+              </div>
             ),
           },
           {
             accessor: "name",
             title: "Product",
+            titleClassName: "text-center",
+            textAlign: "center",
           },
           {
             accessor: "price",
             title: "Price",
+            titleClassName: "text-center",
+            textAlign: "center",
             render: (record) => `$${record.price.toFixed(2)}`,
           },
           {
             accessor: "stock",
             title: "Stock",
+            titleClassName: "text-center",
+            textAlign: "center",
           },
           {
             accessor: "actions",
             title: "Actions",
-            render: (record) => (
-              <div className="flex gap-2 ">
+            titleClassName: "text-center",
+            textAlign: "center",
+            render: () => (
+              <div className="flex gap-2 justify-center ">
                 <Button>Edit</Button>
 
                 <Button variant="destructive" className="cursor-pointer">
