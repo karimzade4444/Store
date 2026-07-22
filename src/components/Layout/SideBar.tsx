@@ -21,7 +21,7 @@ const SideBar = () => {
     },
     {
       icon: <ShoppingCart />,
-      link: "/",
+      link: "/orders",
       id:3,
       name: "Orders"
     },

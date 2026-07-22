@@ -3,6 +3,7 @@ import SideBar from "./components/Layout/SideBar";
 import MainLayout from "./components/Layout/MainLayout";
 import AdminPanel from "./components/pages/adminPanel/adminPanel";
 import Products from "./components/pages/products/Products";
+import Orders from "./components/pages/orders/Orders";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const App = () => {
         {
           index: true,
           element: <Products />,
+        },
+        {
+          path: "/orders",
+          element: <Orders />,
         },
       ],
     },
