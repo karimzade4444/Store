@@ -1,13 +1,13 @@
 import OrderButton from "@/components/custom/OrderButton";
+import { useSearchStore } from "@/components/store/store";
 
 import { getProducts } from "@/lib/api/api";
 import {  useQuery } from "@tanstack/react-query";
 
-interface ISearch{
-  search:string
-}
 
-const Products = ({search}:ISearch) => {
+
+const Products = () => {
+  const {search}=useSearchStore()
   
   const {data} = useQuery({
     queryKey:["getProducts", search],
