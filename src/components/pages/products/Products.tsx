@@ -22,7 +22,7 @@ const Products = ({search}:ISearch) => {
             <img src={el.img} alt="" className="w-64 h-45" />
           </div>
           <p className="pl-5 pt-5 text-xl">{el.name}</p>
-          <div className="pl-5 flex items-center gap-5">
+          <div className="pl-5 pt-2 flex items-center gap-5">
             <p>$ {Math.max(0, el.price - el.sale).toFixed(2)}</p>
             <p className="text-black/50 relative">
               $ {el.price.toFixed(2)}{" "}
