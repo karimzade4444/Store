@@ -1,4 +1,4 @@
-import { ChartNoAxesGantt, LayoutDashboard } from "lucide-react";
+import { ChartNoAxesGantt, LayoutDashboard, ShoppingCart } from "lucide-react";
 import type { NavItems } from "../types/types";
 import { Link, useLocation } from "react-router";
 import { cn } from "@/lib/utils";
@@ -11,13 +11,19 @@ const SideBar = () => {
       icon: <LayoutDashboard />,
       link: "/adminpanel",
       id: 1,
-      name: "Dashboard"
+      name: "Dashboard",
     },
     {
       icon: <ChartNoAxesGantt />,
       link: "/",
       id: 2,
-      name: "Products"
+      name: "Products",
+    },
+    {
+      icon: <ShoppingCart />,
+      link: "/",
+      id:3,
+      name: "Orders"
     },
   ];
 

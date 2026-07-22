@@ -10,7 +10,9 @@ const MainLayout = () => {
         <SideBar />
       </div>
       <div className="w-full relative">
-        <Header />
+        <div className="w-full h-25 ">
+          <Header />
+        </div>
         <Outlet />
       </div>
     </div>
