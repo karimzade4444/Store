@@ -14,6 +14,7 @@ interface Store {
   addToCart: (product: IGetProducts) => void;
   increment: (id: number) => void;
   decrement: (id: number) => void;
+  removeFromCart: (id: number) => void;
 }
 
 export const useStore = create<Store>((set) => ({
@@ -41,5 +42,9 @@ export const useStore = create<Store>((set) => ({
           item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
         )
         .filter((item) => item.quantity > 0),
+    })),
+  removeFromCart: (id) =>
+    set((state) => ({
+      cart: state.cart.filter((item) => item.id !== id),
     })),
 }));

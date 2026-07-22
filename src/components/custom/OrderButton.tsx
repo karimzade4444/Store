@@ -10,7 +10,7 @@ const OrderButton = ({ product }: Props) => {
   const { cart, addToCart, increment, decrement } = useStore();
 
   const item = cart.find((el) => el.id === product.id);
-  const count = item?.quantity ?? 0;
+const count = item?.quantity ?? 0;
 
   return (
     <>
