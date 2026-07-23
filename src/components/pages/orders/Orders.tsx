@@ -32,7 +32,7 @@ const total = cart.reduce(
                 className="w-full h-30 bg-border flex items-start justify-between gap-5 border rounded-2xl shadow"
               >
                 <div>
-                  <img src={item.img} alt="" className="w-42 rounded-2xl" />
+                  <img src={item.img} alt="" className="w-42 h-30 rounded-2xl" />
                 </div>
                 <div className="p-5 leading-12">
                   <p className=" text-2xl">{item.name}</p>
