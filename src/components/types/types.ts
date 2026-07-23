@@ -20,3 +20,10 @@ export interface IGetProducts {
 export interface IDeleteProduct{
   id:number,
 }
+export interface ICreatProduct {
+  img: string;
+  name: string;
+  price: number;
+  sale: number;
+  stock: number;
+}

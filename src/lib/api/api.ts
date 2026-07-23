@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { IDeleteProduct, IGetProducts } from "../../components/types/types";
+import type { ICreatProduct, IDeleteProduct, IGetProducts } from "../../components/types/types";
 
 const api = "https://69e5ff70ce4e908a155ec5a1.mockapi.io/mmj";
 
@@ -13,4 +13,8 @@ export const getProducts = async (search:string): Promise<IGetProducts[]>=>{
 
 export const deleteProduct = async (id:number):Promise<IDeleteProduct>=>{
     return (await axios.delete(`${api}/${id}`)).data
+}
+
+export const createProduct = async (data:ICreatProduct)=>{
+    return (await axios.post(api,data)).data;  
 }

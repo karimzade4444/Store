@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { deleteProduct, getProducts } from "@/lib/api/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { DataTable } from "mantine-datatable";
+import { useState } from "react";
+import CreateModal from "./modals/CreateModal";
 
 const AdminPanel = () => {
+  const [openCreateModal, setOpenCreateModal]=useState(false)
   const { search } = useStore();
   const { data} = useQuery({
     queryKey: ["products", search],
@@ -28,7 +31,7 @@ const queryClient = useQueryClient();
 
   return (
     <div  className="p-10">
-      <div className="flex justify-between p-3"><p className="text-2xl font-black">ADMIN PANEL</p><Button variant="outline" className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer">+ Add</Button></div>
+      <div className="flex justify-between p-3"><p className="text-2xl font-black">ADMIN PANEL</p><Button variant="outline" className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer" onClick={()=>setOpenCreateModal(true)}>+ Add</Button></div>
       <DataTable
         records={filtered ?? []}
         columns={[
@@ -88,6 +91,7 @@ const queryClient = useQueryClient();
           },
         ]}
       />
+      <CreateModal openCreateModal={openCreateModal} setOpenCreateModal={setOpenCreateModal}/>
     </div>
   );
 };
