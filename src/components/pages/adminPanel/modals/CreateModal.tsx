@@ -1,9 +1,15 @@
 import FormInput from "@/components/forms/FormInput";
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent,   DialogTitle, } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import {
+  productSchema,
+  type IProductSchema,
+} from "@/lib/schemas/productSchema";
 import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createProduct } from "@/lib/api/api";
 
 interface ICreateModal {
   openCreateModal: boolean;
@@ -11,30 +17,49 @@ interface ICreateModal {
 }
 
 const CreateModal = ({ openCreateModal, setOpenCreateModal }: ICreateModal) => {
-    const { control, handleSubmit, reset } = useForm<ICreateMobileSchema>({
-      resolver: zodResolver(createMobileSchema),
-      defaultValues: {
-        brand: "",
-        name: "",
-        price: 0,
-        storage: 0,
-        color: "",
-        logo: "",
-        title: "",
-      },
-    });
+    const queryClient = useQueryClient();
+  const { control, handleSubmit, reset, clearErrors } = useForm<IProductSchema>({
+    resolver: zodResolver(productSchema),
+    defaultValues: {
+      img: "",
+      name: "",
+      price: 0,
+      sale: 0,
+      stock: 0,
+    },
+  });
+
+  const { mutate }=useMutation({
+    mutationFn:createProduct,
+    onSuccess:()=>{
+        queryClient.invalidateQueries({
+            queryKey:["getProducts"]
+        })
+    }
+  })
+
+  const onSubmit = (data: IProductSchema) => {
+    mutate(data);
+    reset();
+    setOpenCreateModal(false);
+  };
+
   return (
     <>
       <Dialog open={openCreateModal} onOpenChange={setOpenCreateModal}>
         <DialogContent>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <DialogTitle>Добавление телефона</DialogTitle>
+            <DialogTitle>Добавление Продукта</DialogTitle>
             <div className="mt-5">
-              <p className=" text-neutral-400">Бренд</p>
-             
+              <p className=" text-neutral-400">Изоброжение</p>
+              <FormInput
+                control={control}
+                name="img"
+                placeholder="https://..."
+              />
             </div>
             <div className="mt-3">
-              <p className=" text-neutral-400">Модель</p>
+              <p className=" text-neutral-400">Название продукта</p>
               <FormInput
                 control={control}
                 name="name"
@@ -50,31 +75,19 @@ const CreateModal = ({ openCreateModal, setOpenCreateModal }: ICreateModal) => {
               />
             </div>
             <div className="mt-3">
-              <p className=" text-neutral-400">Память (ГБ)</p>
-             
-            </div>
-            <div className="mt-3">
-              <p className=" text-neutral-400">Цвет</p>
+              <p className=" text-neutral-400">Скидка (%)</p>
               <FormInput
                 control={control}
-                name="color"
-                placeholder="Введите цвет"
+                name="sale"
+                placeholder="Ввелите скидку"
               />
             </div>
             <div className="mt-3">
-              <p className=" text-neutral-400">Лого</p>
+              <p className=" text-neutral-400">Количество</p>
               <FormInput
                 control={control}
-                name="logo"
-                placeholder="https://..."
-              />
-            </div>
-            <div className="mt-3">
-              <p className=" text-neutral-400">Описание</p>
-              <FormInput
-                control={control}
-                name="title"
-                placeholder="Введите описание"
+                name="stock"
+                placeholder="Введите количество"
               />
             </div>
             <div className=" grid grid-cols-2 gap-10 mt-5">
@@ -84,13 +97,13 @@ const CreateModal = ({ openCreateModal, setOpenCreateModal }: ICreateModal) => {
                 className="h-10"
                 onClick={() => {
                   reset();
-
+                  clearErrors();
                   setOpenCreateModal(false);
                 }}
               >
                 Закрыть
               </Button>
-              <Button variant="ghost" className="h-10" type="submit">
+              <Button variant="default" className="h-10" type="submit">
                 Добавить
               </Button>
             </div>
@@ -101,4 +114,4 @@ const CreateModal = ({ openCreateModal, setOpenCreateModal }: ICreateModal) => {
   );
 };
 
-export default CreateModal
+export default CreateModal;

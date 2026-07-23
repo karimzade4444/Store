@@ -27,6 +27,7 @@ const FormInput = <T extends FieldValues>({
             placeholder={placeholder}
             aria-invalid={!!fieldState.error}
             {...field}
+            className="border border-black/30"
           />
 
           <p className="text-red-500 text-sm">{fieldState.error?.message}</p>
