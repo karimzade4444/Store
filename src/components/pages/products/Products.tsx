@@ -9,9 +9,9 @@ import {  useQuery } from "@tanstack/react-query";
 const Products = () => {
   const {search}=useStore()
   
-  const {data} = useQuery({
-    queryKey:["getProducts", search],
-    queryFn: ()=>getProducts(search),
+  const { data } = useQuery({
+    queryKey: ["products", search],
+    queryFn: () => getProducts(search),
   });
   return (
     <div className=" grid grid-cols-4 gap-5 p-5">

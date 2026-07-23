@@ -1,19 +1,31 @@
 import { useStore } from "@/components/store/store";
 import { Button } from "@/components/ui/button";
-import { getProducts } from "@/lib/api/api";
-import { useQuery } from "@tanstack/react-query";
+import { deleteProduct, getProducts } from "@/lib/api/api";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { DataTable } from "mantine-datatable";
 
 const AdminPanel = () => {
-  const { data} = useQuery({
-    queryKey: ["products"],
-    queryFn: () => getProducts(""),
-  });
   const { search } = useStore();
+  const { data} = useQuery({
+    queryKey: ["products", search],
+    queryFn: () => getProducts(search),
+  });
+  
 
   const filtered = data?.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase()),
   );
+const queryClient = useQueryClient();
+  const {mutate: deletingProd}=useMutation({
+    mutationFn:deleteProduct,
+    onSuccess:()=>{
+      queryClient.invalidateQueries({
+        queryKey: ["products", search],
+      });
+    },
+  });
+
+
   return (
     <div  className="p-10">
       <div className="flex justify-between p-3"><p className="text-2xl font-black">ADMIN PANEL</p><Button variant="outline" className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer">+ Add</Button></div>
@@ -64,11 +76,11 @@ const AdminPanel = () => {
             title: "Actions",
             titleClassName: "text-center",
             textAlign: "center",
-            render: () => (
+            render: (el) => (
               <div className="flex gap-2 justify-center ">
                 <Button>Edit</Button>
 
-                <Button variant="destructive" className="cursor-pointer">
+                <Button variant="destructive" className="cursor-pointer" onClick={()=>deletingProd(el.id)}>
                   Delete
                 </Button>
               </div>
