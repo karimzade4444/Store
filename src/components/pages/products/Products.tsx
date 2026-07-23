@@ -14,7 +14,7 @@ const Products = () => {
     queryFn: () => getProducts(search),
   });
   return (
-    <div className=" grid grid-cols-4 gap-5 p-5">
+    <div className=" grid grid-cols-4 gap-5 p-5 ">
       {data?.map((el) => (
         <div key={el.id} className="w-80 h-100 bg-card rounded-2xl">
           <div className="w-20 h-6 bg-chart-4/30 rounded-2xl flex justify-center items-center text-chart-1 m-3">
@@ -32,7 +32,7 @@ const Products = () => {
             </p>
           </div>
           <div className="p-5">
-            <OrderButton product={el}/>
+            <OrderButton product={el} />
           </div>
         </div>
       ))}

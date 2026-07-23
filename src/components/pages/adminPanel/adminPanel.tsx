@@ -30,8 +30,17 @@ const queryClient = useQueryClient();
 
 
   return (
-    <div  className="p-10">
-      <div className="flex justify-between p-3"><p className="text-2xl font-black">ADMIN PANEL</p><Button variant="outline" className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer" onClick={()=>setOpenCreateModal(true)}>+ Add</Button></div>
+    <div className="p-10">
+      <div className="flex justify-between p-3">
+        <p className="text-2xl font-black">ADMIN PANEL</p>
+        <Button
+          variant="outline"
+          className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer"
+          onClick={() => setOpenCreateModal(true)}
+        >
+          + Add
+        </Button>
+      </div>
       <DataTable
         records={filtered ?? []}
         columns={[
@@ -62,6 +71,12 @@ const queryClient = useQueryClient();
             textAlign: "center",
           },
           {
+            accessor: "stock",
+            title: "Stock(шт)",
+            titleClassName: "text-center",
+            textAlign: "center",
+          },
+          {
             accessor: "price",
             title: "Price",
             titleClassName: "text-center",
@@ -69,8 +84,8 @@ const queryClient = useQueryClient();
             render: (record) => `$${record.price.toFixed(2)}`,
           },
           {
-            accessor: "stock",
-            title: "Stock",
+            accessor: "sale",
+            title: "Sale (%)",
             titleClassName: "text-center",
             textAlign: "center",
           },
@@ -83,7 +98,11 @@ const queryClient = useQueryClient();
               <div className="flex gap-2 justify-center ">
                 <Button>Edit</Button>
 
-                <Button variant="destructive" className="cursor-pointer" onClick={()=>deletingProd(el.id)}>
+                <Button
+                  variant="destructive"
+                  className="cursor-pointer"
+                  onClick={() => deletingProd(el.id)}
+                >
                   Delete
                 </Button>
               </div>
@@ -91,7 +110,10 @@ const queryClient = useQueryClient();
           },
         ]}
       />
-      <CreateModal openCreateModal={openCreateModal} setOpenCreateModal={setOpenCreateModal}/>
+      <CreateModal
+        openCreateModal={openCreateModal}
+        setOpenCreateModal={setOpenCreateModal}
+      />
     </div>
   );
 };

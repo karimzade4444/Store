@@ -181,11 +181,19 @@
 }
 
 @layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    background: var(--color-secondary);
+  }
+
+  body {
+    @apply bg-secondary text-foreground;
+    letter-spacing: var(--tracking-normal);
+  }
+
   * {
     @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-    letter-spacing: var(--tracking-normal);
   }
 }

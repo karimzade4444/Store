@@ -33,7 +33,7 @@ const CreateModal = ({ openCreateModal, setOpenCreateModal }: ICreateModal) => {
     mutationFn:createProduct,
     onSuccess:()=>{
         queryClient.invalidateQueries({
-            queryKey:["getProducts"]
+            queryKey:["products"]
         })
     }
   })

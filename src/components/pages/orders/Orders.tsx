@@ -20,7 +20,7 @@ const Orders = () => {
 
   return (
     <>
-      <div>
+      <div >
         <p className="p-5 text-3xl font-bold">Order details</p>
         <div className=" flex justify-start items-start gap-50">
           <div className=" p-5 flex flex-col gap-5 w-[50%]">
