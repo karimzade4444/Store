@@ -2,6 +2,7 @@ import FormInput from "@/components/forms/FormInput";
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent,   DialogTitle, } from "@/components/ui/dialog"
 import type { Dispatch, SetStateAction } from "react";
+import { useForm } from "react-hook-form";
 
 
 interface ICreateModal {
@@ -10,6 +11,18 @@ interface ICreateModal {
 }
 
 const CreateModal = ({ openCreateModal, setOpenCreateModal }: ICreateModal) => {
+    const { control, handleSubmit, reset } = useForm<ICreateMobileSchema>({
+      resolver: zodResolver(createMobileSchema),
+      defaultValues: {
+        brand: "",
+        name: "",
+        price: 0,
+        storage: 0,
+        color: "",
+        logo: "",
+        title: "",
+      },
+    });
   return (
     <>
       <Dialog open={openCreateModal} onOpenChange={setOpenCreateModal}>
@@ -18,33 +31,7 @@ const CreateModal = ({ openCreateModal, setOpenCreateModal }: ICreateModal) => {
             <DialogTitle>Добавление телефона</DialogTitle>
             <div className="mt-5">
               <p className=" text-neutral-400">Бренд</p>
-              <FormSelect
-                control={control}
-                name="brand"
-                placeholder="Выберите бренд"
-                options={[
-                  {
-                    label: "Apple",
-                    value: "Apple",
-                  },
-                  {
-                    label: "Samsung",
-                    value: "Samsung",
-                  },
-                  {
-                    label: "Xiaomi",
-                    value: "Xiaomi",
-                  },
-                  {
-                    label: "Honor",
-                    value: "Honor",
-                  },
-                  {
-                    label: "Huawei",
-                    value: "Huawei",
-                  },
-                ]}
-              />
+             
             </div>
             <div className="mt-3">
               <p className=" text-neutral-400">Модель</p>
@@ -64,33 +51,7 @@ const CreateModal = ({ openCreateModal, setOpenCreateModal }: ICreateModal) => {
             </div>
             <div className="mt-3">
               <p className=" text-neutral-400">Память (ГБ)</p>
-              <FormSelect
-                control={control}
-                name="storage"
-                placeholder="Выберите память"
-                options={[
-                  {
-                    label: "64",
-                    value: "64",
-                  },
-                  {
-                    label: "128",
-                    value: "128",
-                  },
-                  {
-                    label: "256",
-                    value: "256",
-                  },
-                  {
-                    label: "512",
-                    value: "512",
-                  },
-                  {
-                    label: "1024",
-                    value: "1024",
-                  },
-                ]}
-              />
+             
             </div>
             <div className="mt-3">
               <p className=" text-neutral-400">Цвет</p>
