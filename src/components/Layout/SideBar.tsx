@@ -46,10 +46,12 @@ const SideBar = () => {
           </Link>
         ))}
       </div>
-      <div className="flex justify-center items-center flex-col text-secondary cursor-pointer hover:text-secondary/50 duration-300 mt-100">
-        <LogOut />
-        <p>Log Out</p>
-      </div>
+      <Link to="/log">
+        <div className="flex justify-center items-center flex-col text-secondary cursor-pointer hover:text-secondary/50 duration-300 mt-100">
+          <LogOut />
+          <p>Log Out</p>
+        </div>
+      </Link>
     </div>
   );
 };

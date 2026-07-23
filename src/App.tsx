@@ -3,6 +3,7 @@ import MainLayout from "./components/Layout/MainLayout";
 import AdminPanel from "./components/pages/adminPanel/adminPanel";
 import Products from "./components/pages/products/Products";
 import Orders from "./components/pages/orders/Orders";
+import LogIn from "./components/pages/log/LogIn";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const App = () => {
         },
       ],
     },
+    {
+      path:"/log",
+      element:<LogIn/>
+    }
   ]);
   return <RouterProvider router={router}/>;
 };
