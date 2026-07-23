@@ -69,7 +69,7 @@ const EditModal = ({ openEditModal, setOpenEditModal, prods }: IEditModal) => {
       <Dialog open={openEditModal} onOpenChange={setOpenEditModal}>
         <DialogContent>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <DialogTitle>Добавление Продукта</DialogTitle>
+            <DialogTitle>Изменение Продукта</DialogTitle>
             <div className="mt-5">
               <p className=" text-neutral-400">Изоброжение</p>
               <FormInput
