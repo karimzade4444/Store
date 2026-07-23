@@ -5,12 +5,13 @@ import {
   productSchema,
   type IProductSchema,
 } from "@/lib/schemas/productSchema";
-import type { Dispatch, SetStateAction } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createProduct } from "@/lib/api/api";
+import { createProduct, updateProduct } from "@/lib/api/api";
 import type { IGetProducts } from "@/components/types/types";
+import { number } from "zod";
 
 interface IEditModal {
   openEditModal: boolean;
@@ -31,24 +32,42 @@ const EditModal = ({ openEditModal, setOpenEditModal, prods }: IEditModal) => {
     },
   });
 
-  const { mutate }=useMutation({
-    mutationFn:createProduct,
-    onSuccess:()=>{
-        queryClient.invalidateQueries({
-            queryKey:["products"]
-        })
-    }
-  })
+  const { mutate: updatingMobile } = useMutation({
+    mutationFn: ({ id, data }: { id: number; data: IProductSchema }) =>
+      updateProduct(id, data),
 
-  const onSubmit = (data: IProductSchema) => {
-    mutate(data);
-    reset();
-    setOpenCreateModal(false);
-  };
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["products"],
+      });
+      reset();
+
+      setOpenEditModal(false);
+    },
+  });
+   useEffect(() => {
+     if (prods) {
+       reset({
+         img: prods.img,
+         name: prods.name,
+         price: prods.price,
+         sale: prods.sale,
+         stock: prods.stock,
+       });
+     }
+   }, [prods, reset]);
+
+   const onSubmit = (data: IProductSchema) => {
+     if (!prods) return;
+     updatingMobile({
+       id: prods.id,
+       data,
+     });
+   };
 
   return (
     <>
-      <Dialog open={openCreateModal} onOpenChange={setOpenCreateModal}>
+      <Dialog open={openEditModal} onOpenChange={setOpenEditModal}>
         <DialogContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <DialogTitle>Добавление Продукта</DialogTitle>
@@ -100,7 +119,7 @@ const EditModal = ({ openEditModal, setOpenEditModal, prods }: IEditModal) => {
                 onClick={() => {
                   reset();
                   clearErrors();
-                  setOpenCreateModal(false);
+                  setOpenEditModal(false);
                 }}
               >
                 Закрыть

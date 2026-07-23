@@ -28,7 +28,7 @@ export interface ICreatProduct {
   stock: number;
 }
 export interface IEditProduct {
-  id:number;
+  
   img: string;
   name: string;
   price: number;
