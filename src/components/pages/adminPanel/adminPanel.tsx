@@ -5,9 +5,13 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { DataTable } from "mantine-datatable";
 import { useState } from "react";
 import CreateModal from "./modals/CreateModal";
+import type { IGetProducts } from "@/components/types/types";
+import EditModal from "./modals/EditModal";
 
 const AdminPanel = () => {
   const [openCreateModal, setOpenCreateModal]=useState(false)
+  const [openEditModal, setOpenEditModal] = useState(false)
+  const [selectedProd, setSelectedProd] = useState<IGetProducts | null>(null);
   const { search } = useStore();
   const { data} = useQuery({
     queryKey: ["products", search],
@@ -96,7 +100,15 @@ const queryClient = useQueryClient();
             textAlign: "center",
             render: (el) => (
               <div className="flex gap-2 justify-center ">
-                <Button>Edit</Button>
+                <Button
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setSelectedProd(el);
+                    setOpenEditModal(true);
+                  }}
+                >
+                  Edit
+                </Button>
 
                 <Button
                   variant="destructive"
@@ -113,6 +125,10 @@ const queryClient = useQueryClient();
       <CreateModal
         openCreateModal={openCreateModal}
         setOpenCreateModal={setOpenCreateModal}
+      />
+      <EditModal
+        openEditModal={openEditModal}
+        setOpenEditModal={setOpenEditModal} prods={selectedProd}
       />
     </div>
   );

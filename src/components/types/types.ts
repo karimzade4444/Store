@@ -27,3 +27,11 @@ export interface ICreatProduct {
   sale: number;
   stock: number;
 }
+export interface IEditProduct {
+  id:number;
+  img: string;
+  name: string;
+  price: number;
+  sale: number;
+  stock: number;
+}
