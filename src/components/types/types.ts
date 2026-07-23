@@ -17,3 +17,6 @@ export interface IGetProducts {
   stock: number;
 }
 
+export interface IDeleteProduct{
+  id:number,
+}
