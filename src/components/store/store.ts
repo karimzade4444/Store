@@ -54,8 +54,6 @@ export const useStore = create<Store>()(
     }),
     {
       name: "shop-storage",
-
-     
       partialize: (state) => ({
         cart: state.cart,
       }),
