@@ -25,7 +25,7 @@ const Products = () => {
           </div>
           <p className="pl-5 pt-5 text-xl">{el.name}</p>
           <div className="pl-5 pt-2 flex items-center gap-5">
-            <p>$ {Math.max(0, el.price - el.sale).toFixed(2)}</p>
+            <p>${(el.price * (1 - el.sale / 100)).toFixed(2)}</p>
             <p className="text-black/50 relative">
               $ {el.price.toFixed(2)}
               <div className="w-full h-0.5 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50 z-0"></div>

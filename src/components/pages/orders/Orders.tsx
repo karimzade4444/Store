@@ -5,22 +5,24 @@ import { Button } from "@/components/ui/button";
 
 const Orders = () => {
   const { cart, increment, decrement, removeFromCart } = useStore();
-  const total = cart.reduce(
-    (sum, item) => sum + Math.max(0,(item.price - item.sale) * item.quantity),
-    0,
-  );
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const discount = cart.reduce(
-    (sum, item) => sum + item.sale * item.quantity,
-    0,
-  );
+const subtotal = cart.reduce(
+  (sum, item) => sum + item.price * item.quantity,
+  0,
+);
+
+const discount = cart.reduce(
+  (sum, item) => sum + ((item.price * item.sale) / 100) * item.quantity,
+  0,
+);
+
+const total = cart.reduce(
+  (sum, item) => sum + item.price * (1 - item.sale / 100) * item.quantity,
+  0,
+);
 
   return (
     <>
-      <div >
+      <div>
         <p className="p-5 text-3xl font-bold">Order details</p>
         <div className=" flex justify-start items-start gap-50">
           <div className=" p-5 flex flex-col gap-5 w-[50%]">
@@ -36,10 +38,11 @@ const Orders = () => {
                   <p className=" text-2xl">{item.name}</p>
                   <div className="w-40 flex  items-center gap-5">
                     <p>
-                      ${" "}
-                      {Math.max(
-                        0,
-                        (item.price - item.sale) * item.quantity,
+                      $
+                      {(
+                        item.price *
+                        (1 - item.sale / 100) *
+                        item.quantity
                       ).toFixed(2)}
                     </p>
                     <p className="text-black/50 relative">
