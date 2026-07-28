@@ -7,43 +7,46 @@ import { useState } from "react";
 import CreateModal from "./modals/CreateModal";
 import type { IGetProducts } from "@/components/types/types";
 import EditModal from "./modals/EditModal";
+import { useCan } from "@/lib/configs/hooks/useCan";
+import { Actions } from "@/lib/configs/rolePermissions";
 
 const AdminPanel = () => {
-  const [openCreateModal, setOpenCreateModal]=useState(false)
-  const [openEditModal, setOpenEditModal] = useState(false)
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedProd, setSelectedProd] = useState<IGetProducts | null>(null);
   const { search } = useStore();
-  const { data} = useQuery({
+  const { data } = useQuery({
     queryKey: ["products", search],
     queryFn: () => getProducts(search),
   });
-  
+  const { can } = useCan();
 
   const filtered = data?.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase()),
   );
-const queryClient = useQueryClient();
-  const {mutate: deletingProd}=useMutation({
-    mutationFn:deleteProduct,
-    onSuccess:()=>{
+  const queryClient = useQueryClient();
+  const { mutate: deletingProd } = useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["products", search],
       });
     },
   });
 
-
   return (
     <div className="p-10">
       <div className="flex justify-between p-3">
         <p className="text-2xl font-black">ADMIN PANEL</p>
-        <Button
-          variant="outline"
-          className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer"
-          onClick={() => setOpenCreateModal(true)}
-        >
-          + Add
-        </Button>
+        {can(Actions.adminpanelCreate) && (
+          <Button
+            variant="outline"
+            className="w-30 h-12 border shadow text-2xl font-black text-primary cursor-pointer"
+            onClick={() => setOpenCreateModal(true)}
+          >
+            + Add
+          </Button>
+        )}
       </div>
       <DataTable
         records={filtered ?? []}
@@ -128,7 +131,8 @@ const queryClient = useQueryClient();
       />
       <EditModal
         openEditModal={openEditModal}
-        setOpenEditModal={setOpenEditModal} prods={selectedProd}
+        setOpenEditModal={setOpenEditModal}
+        prods={selectedProd}
       />
     </div>
   );
