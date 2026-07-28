@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import MainLayout from "./components/Layout/MainLayout";
-import AdminPanel from "./components/pages/adminPanel/adminPanel";
-import Products from "./components/pages/products/Products";
-import Orders from "./components/pages/orders/Orders";
-import LogIn from "./components/pages/log/LogIn";
+import AdminPanel from "./pages/adminPanel/adminPanel";
+import Products from "./pages/products/Products";
+import Orders from "./pages/orders/Orders";
+import LogIn from "./pages/log/LogIn";
 
 const App = () => {
   const router = createBrowserRouter([

@@ -1,6 +1,35 @@
-import { Link } from "react-router";
+import FormInput from "@/components/forms/FormInput";
+import { Button } from "@/components/ui/button";
+import { login } from "@/lib/api/auth";
+import { useMutation } from "@tanstack/react-query";
+import Cookies from "js-cookie";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 const LogIn = () => {
+  const { control, handleSubmit } = useForm<{
+    password: string;
+    username: string;
+  }>();
+
+  const navigate = useNavigate();
+  
+  const { mutate } = useMutation({
+    mutationFn: login,
+    onSuccess: (res) => {
+      console.log(res);
+      const token = res.data.data;
+      if (token) {
+        Cookies.set("token", token);
+        navigate("/");
+      }
+    },
+  });
+
+  const onSubmit = (data: { password: string; username: string }) => {
+    mutate(data);
+  };
+
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-primary">
       <div className="absolute inset-0 bg-linear-to-br from-primary via-black/70 to-cyan-700" />
@@ -18,23 +47,20 @@ const LogIn = () => {
           Войдите чтобы продолжить
         </p>
 
-        <div className="space-y-5">
-          <input
-            type="email"
-            placeholder="Email"
-            className="h-12 w-full rounded-xl border border-white/20 bg-white/10 px-4 text-white placeholder:text-white/70 outline-none transition focus:border-violet-400"
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            className="h-12 w-full rounded-xl border border-white/20 bg-white/10 px-4 text-white placeholder:text-white/70 outline-none transition focus:border-violet-400"
-          />
-          <Link to="/">
-            <button className="h-12 w-full cursor-pointer rounded-xl bg-linear-to-r from-violet-600 to-cyan-500 font-semibold text-white transition duration-300 hover:scale-[1.02] hover:shadow-xl">
-              Войти
-            </button>
-          </Link>
+        <div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <FormInput
+              name="username"
+              control={control}
+              placeholder="username"
+            />
+            <FormInput
+              name="password"
+              control={control}
+              placeholder="username"
+            />
+            <Button type="submit">Войти</Button>
+          </form>
         </div>
 
         <p className="mt-6 text-center text-sm text-gray-300">

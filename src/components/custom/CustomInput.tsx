@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+
 import {
   InputGroup,
   InputGroupAddon,
