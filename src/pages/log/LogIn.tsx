@@ -60,7 +60,7 @@ const LogIn = () => {
               placeholder="username"
               type="password"
             />
-            <Button type="submit">Войти</Button>
+            <Button type="submit" className="w-full cursor-pointer">Войти</Button>
           </form>
         </div>
 
