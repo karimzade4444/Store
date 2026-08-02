@@ -58,6 +58,7 @@ const LogIn = () => {
               name="password"
               control={control}
               placeholder="username"
+              type="password"
             />
             <Button type="submit">Войти</Button>
           </form>
