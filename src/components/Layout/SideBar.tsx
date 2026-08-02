@@ -8,32 +8,17 @@ import type { NavItems } from "../types/types";
 import { Link, useLocation, useNavigate } from "react-router";
 import { cn } from "@/lib/utils";
 import Cookies from "js-cookie";
+import { getSideBarConfig } from "@/lib/configs/navigation/naviagation";
+import { useCan } from "@/lib/configs/hooks/useCan";
 
 const SideBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
-  console.log(location);
-  const navigationItems: NavItems[] = [
-    {
-      icon: <LayoutDashboard />,
-      link: "/adminpanel",
-      id: 1,
-      name: "Dashboard",
-    },
-    {
-      icon: <ChartNoAxesGantt />,
-      link: "/",
-      id: 2,
-      name: "Products",
-    },
-    {
-      icon: <ShoppingCart />,
-      link: "/orders",
-      id: 3,
-      name: "Orders",
-    },
-  ];
+  const { hasRoles } = useCan();
+  const navigationItemsConfig: NavItems[] = getSideBarConfig();
+  const navigationItems = navigationItemsConfig.filter((items) =>
+    hasRoles(items.roles),
+  );
 
   const handleLogout = () => {
     Cookies.remove("token");

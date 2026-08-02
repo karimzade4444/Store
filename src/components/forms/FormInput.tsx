@@ -5,8 +5,9 @@ import {
   type Path,
 } from "react-hook-form";
 import { Input } from "../ui/input";
+import type { ComponentProps } from "react";
 
-interface IFormInput<T extends FieldValues> {
+interface IFormInput<T extends FieldValues> extends ComponentProps<"input"> {
   name: Path<T>;
   control: Control<T>;
   placeholder?: string;
@@ -16,6 +17,7 @@ const FormInput = <T extends FieldValues>({
   control,
   name,
   placeholder,
+  ...props
 }: IFormInput<T>) => {
   return (
     <Controller
@@ -27,6 +29,7 @@ const FormInput = <T extends FieldValues>({
             placeholder={placeholder}
             aria-invalid={!!fieldState.error}
             {...field}
+            {...props}
             className="border border-black/30"
           />
 

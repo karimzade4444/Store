@@ -11,12 +11,27 @@ export interface DecodedToken {
 
 export const useCan = () => {
   const token = Cookies.get("token");
-  const decoded = jwtDecode<DecodedToken>(token || "");
-  const user = decoded.role;
+  const getUserRole = () => {
+    try {
+      const decoded = jwtDecode<DecodedToken>(token || "");
+      return decoded.role;
+    } catch {
+      console.error("ошибка токена");
+    }
+  };
+
+  const user = getUserRole();
 
   const can = (action: Actions) => {
     return ACTION_PERMISSIONS[user].includes(action);
   };
 
-  return { can };
+  const hasRoles = (roles: Role[] | Role | undefined): boolean => {
+    if (!roles?.length || !roles) {
+      return true;
+    }
+    return roles.includes(user);
+  };
+
+  return { can, hasRoles, user };
 };

@@ -1,13 +1,6 @@
 import type { NavItems } from "@/components/types/types";
 import { Role, type Actions } from "../rolePermissions";
-import {
-  ChartNoAxesGantt,
-  LayoutDashboard,
-  LogOut,
-  ShoppingCart,
-} from "lucide-react";
-
-
+import { ChartNoAxesGantt, LayoutDashboard, ShoppingCart } from "lucide-react";
 
 export const getSideBarConfig = (): NavItems[] => [
   {
@@ -30,11 +23,3 @@ export const getSideBarConfig = (): NavItems[] => [
     name: "Orders",
   },
 ];
-
-export const getVisibleNavigation = () => {
-  const config = getSideBarConfig();
-  return config.filter((items) => {
-    if (items.roles) {
-    }
-  });
-};
