@@ -20,7 +20,6 @@ const Header = () => {
           className="bg-primary-foreground py-5 w-120 shadow dark:text-white dark:bg-chart-5"
         />
         <div className="flex justify-center items-center gap-5">
-          <ThemeButton />
           <Button variant="outline" className="cursor-pointer size-12 shadow">
             <Bell className="size-5 text-black dark:text-white" />
           </Button>
@@ -34,10 +33,13 @@ const Header = () => {
               className="w-12 h-12 rounded-xl shadow"
             />
             <div>
-              <p className=" font-black dark:text-foreground">Karimzoda Mustafo</p>
+              <p className=" font-black dark:text-foreground">
+                Karimzoda Mustafo
+              </p>
               <p className=" text-black/50 dark:text-foreground">Admin</p>
             </div>
           </div>
+          <ThemeButton />
         </div>
       </div>
     </div>

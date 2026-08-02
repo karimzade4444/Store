@@ -16,10 +16,7 @@ export default function ThemeButton() {
     <button
       onClick={() => setDark((prev) => !prev)}
       className="
-        fixed
-        right-8
-        top-8
-        z-50
+      
         flex
         h-14
         w-14
