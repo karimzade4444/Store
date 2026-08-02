@@ -10,6 +10,7 @@ import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 const LogIn = () => {
+  const [error, setError] = useState("");
   const { control, handleSubmit } = useForm<{
     password: string;
     username: string;
@@ -17,24 +18,27 @@ const LogIn = () => {
 
   const navigate = useNavigate();
   
-  const { mutate } = useMutation({
-    mutationFn: login,
-    onSuccess: (res) => {
-      const token = res.data.data;
+ const { mutate } = useMutation({
+   mutationFn: login,
 
-      if (token) {
-        Cookies.set("token", token);
+   onSuccess: (res) => {
+     const token = res.data.data;
 
-        const user = jwtDecode(token);
+     if (token) {
+       Cookies.set("token", token);
 
-        console.log("USER FROM TOKEN:", user);
+       const user = jwtDecode(token);
 
-        localStorage.setItem("user", JSON.stringify(user));
+       localStorage.setItem("user", JSON.stringify(user));
 
-        navigate("/");
-      }
-    },
-  });
+       navigate("/");
+     }
+   },
+
+   onError: () => {
+     setError("Неверный логин или пароль");
+   },
+ });
 const [dark, setDark] = useState(localStorage.getItem("theme") === "dark");
   const onSubmit = (data: { password: string; username: string }) => {
     mutate(data);
@@ -49,7 +53,6 @@ const [dark, setDark] = useState(localStorage.getItem("theme") === "dark");
       dark:bg-[radial-gradient(circle_at_top_left,#25D36644,transparent_35%)]
     "
       />
-     
 
       <div className="absolute left-20 top-20 h-72 w-72 rounded-full bg-accent/20 blur-[120px] animate-pulse" />
 
@@ -276,6 +279,9 @@ const [dark, setDark] = useState(localStorage.getItem("theme") === "dark");
                 placeholder="Password"
                 type="password"
               />
+              {error && (
+                <p className="text-red-500 text-sm font-medium pl-3">{error}</p>
+              )}
 
               <Button
                 type="submit"
