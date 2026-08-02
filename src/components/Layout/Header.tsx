@@ -2,6 +2,7 @@ import { Bell, Search, Settings } from "lucide-react";
 import CustomInput from "../custom/CustomInput";
 import { Button } from "../ui/button";
 import { useStore } from "../store/store";
+import ThemeButton from "../ui/ThemeButton";
 
 
 
@@ -19,6 +20,7 @@ const Header = () => {
           className="bg-primary-foreground py-5 w-120 shadow"
         />
         <div className="flex justify-center items-center gap-5">
+          <ThemeButton/>
           <Button variant="outline" className="cursor-pointer size-12 shadow">
             <Bell className="size-5 "/>
           </Button>
