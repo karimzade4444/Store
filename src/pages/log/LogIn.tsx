@@ -72,7 +72,7 @@ const [dark, setDark] = useState(localStorage.getItem("theme") === "dark");
   "
       >
         {dark ? (
-          <Moon className="text-gray-700" />
+          <Moon className="text-gray-600" />
         ) : (
           <Sun className="text-yellow-400" />
         )}

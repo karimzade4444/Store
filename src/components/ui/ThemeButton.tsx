@@ -18,8 +18,8 @@ export default function ThemeButton() {
       className="
       
         flex
-        h-14
-        w-14
+        h-12
+        w-12
         items-center
         justify-center
         overflow-hidden
@@ -29,16 +29,16 @@ export default function ThemeButton() {
         shadow-xl
         backdrop-blur-xl
         transition-all
-        hover:scale-110
+        duration-300
         dark:border-white/20
         dark:bg-black/40
         cursor-pointer
       "
     >
       {dark ? (
-        <Moon className="h-6 w-6 text-yellow-300" />
+        <Moon className="h-6 w-6 text-gray-600" />
       ) : (
-        <Sun className="h-6 w-6 text-orange-400" />
+        <Sun className="h-6 w-6 text-yellow-300" />
       )}
     </button>
   );
