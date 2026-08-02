@@ -3,12 +3,26 @@ import CustomInput from "../custom/CustomInput";
 import { Button } from "../ui/button";
 import { useStore } from "../store/store";
 import ThemeButton from "../ui/ThemeButton";
-
-
-
+import { useState } from "react";
+import type { IUser } from "../types/types";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 const Header = () => {
   const { search, setSearch } = useStore();
+
+  const [user] = useState<IUser | null>(() => {
+    const token = Cookies.get("token");
+
+    if (!token) return null;
+
+    try {
+      return jwtDecode<IUser>(token);
+    } catch {
+      return null;
+    }
+  });
+
   return (
     <div className="w-full max-h-25 h-fit bg-secondary border-b-2 p-5 fixed top-0 z-10 ">
       <div className="flex justify-between items-center pr-30">
@@ -28,15 +42,20 @@ const Header = () => {
           </Button>
           <div className="flex justify-center items-center gap-2">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQzFWxj0S7AVqUL5nhSDNmjWq5tv_zm1NdvaBUkM3SJmefg9llPLGi2Dg&s=10"
+              src={
+                user?.picture ||
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQzFWxj0S7AVqUL5nhSDNmjWq5tv_zm1NdvaBUkM3SJmefg9llPLGi2Dg&s=10"
+              }
               alt="fdf"
               className="w-12 h-12 rounded-xl shadow"
             />
             <div>
               <p className=" font-black dark:text-foreground">
-                Karimzoda Mustafo
+                {user?.name || "Karimzoda Mustafo"}
               </p>
-              <p className=" text-black/50 dark:text-foreground">Admin</p>
+              <p className=" text-black/50 dark:text-foreground">
+                {user?.role || "Admin"}
+              </p>
             </div>
           </div>
           <ThemeButton />
@@ -44,6 +63,6 @@ const Header = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Header
+export default Header;

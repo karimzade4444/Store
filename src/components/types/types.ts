@@ -35,3 +35,9 @@ export interface IEditProduct {
   sale: number;
   stock: number;
 }
+
+export interface IUser {
+  name: string;
+  role: string;
+  picture?: string;
+}

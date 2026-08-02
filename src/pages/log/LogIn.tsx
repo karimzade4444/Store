@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { Moon, Sun, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const LogIn = () => {
   const { control, handleSubmit } = useForm<{
@@ -19,10 +20,17 @@ const LogIn = () => {
   const { mutate } = useMutation({
     mutationFn: login,
     onSuccess: (res) => {
-      console.log(res);
       const token = res.data.data;
+
       if (token) {
         Cookies.set("token", token);
+
+        const user = jwtDecode(token);
+
+        console.log("USER FROM TOKEN:", user);
+
+        localStorage.setItem("user", JSON.stringify(user));
+
         navigate("/");
       }
     },
