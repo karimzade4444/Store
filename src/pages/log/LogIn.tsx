@@ -41,6 +41,11 @@ const [dark, setDark] = useState(localStorage.getItem("theme") === "dark");
       dark:bg-[radial-gradient(circle_at_top_left,#25D36644,transparent_35%)]
     "
       />
+     
+
+      <div className="absolute left-20 top-20 h-72 w-72 rounded-full bg-accent/20 blur-[120px] animate-pulse" />
+
+      <div className="absolute bottom-10 right-20 h-96 w-96 rounded-full bg-primary/20 blur-[140px] animate-pulse" />
 
       <button
         onClick={() => {
