@@ -45,7 +45,7 @@ const SideBar = () => {
       </div>
 
       <div
-        className="flex justify-center items-center flex-col text-foreground cursor-pointer hover:text-foreground/50 duration-300 mt-100"
+        className="flex justify-center items-center flex-col text-secondary dark:text-foreground cursor-pointer dark:hover:text-foreground/50 hover:text-secondary/50 duration-300 mt-100"
         onClick={handleLogout}
       >
         <LogOut />
