@@ -13,19 +13,19 @@ const Header = () => {
     <div className="w-full max-h-25 h-fit bg-secondary border-b-2 p-5 fixed top-0 z-10 ">
       <div className="flex justify-between items-center pr-30">
         <CustomInput
-        value={search}
-        onChange={(e)=>setSearch(e.target.value)}
-          start={<Search className="size-10 pr-3 " color="black" />}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          start={<Search className="size-10 pr-3 text-black dark:text-white" />}
           placeholder="Search"
-          className="bg-primary-foreground py-5 w-120 shadow"
+          className="bg-primary-foreground py-5 w-120 shadow dark:text-white"
         />
         <div className="flex justify-center items-center gap-5">
-          <ThemeButton/>
+          <ThemeButton />
           <Button variant="outline" className="cursor-pointer size-12 shadow">
-            <Bell className="size-5 "/>
+            <Bell className="size-5 text-black dark:text-white" />
           </Button>
           <Button variant="outline" className="cursor-pointer size-12 shadow">
-            <Settings className="size-5"/>
+            <Settings className="size-5 text-black dark:text-white" />
           </Button>
           <div className="flex justify-center items-center gap-2">
             <img
