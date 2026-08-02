@@ -35,7 +35,7 @@ const AdminPanel = () => {
   });
 
   return (
-    <div className="p-10">
+    <div className="p-10 dark:text-foreground">
       <div className="flex justify-between p-3">
         <p className="text-2xl font-black">ADMIN PANEL</p>
         {can(Actions.adminpanelCreate) && (
@@ -49,6 +49,9 @@ const AdminPanel = () => {
         )}
       </div>
       <DataTable
+        borderRadius="lg"
+        withTableBorder
+        withColumnBorders
         records={filtered ?? []}
         columns={[
           {

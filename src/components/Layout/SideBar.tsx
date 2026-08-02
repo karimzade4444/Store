@@ -1,8 +1,7 @@
 import {
-  ChartNoAxesGantt,
-  LayoutDashboard,
+
   LogOut,
-  ShoppingCart,
+
 } from "lucide-react";
 import type { NavItems } from "../types/types";
 import { Link, useLocation, useNavigate } from "react-router";

@@ -17,7 +17,7 @@ const Header = () => {
           onChange={(e) => setSearch(e.target.value)}
           start={<Search className="size-10 pr-3 text-black dark:text-white" />}
           placeholder="Search"
-          className="bg-primary-foreground py-5 w-120 shadow dark:text-white"
+          className="bg-primary-foreground py-5 w-120 shadow dark:text-white dark:bg-chart-5"
         />
         <div className="flex justify-center items-center gap-5">
           <ThemeButton />
@@ -34,8 +34,8 @@ const Header = () => {
               className="w-12 h-12 rounded-xl shadow"
             />
             <div>
-              <p className=" font-black">Karimzoda Mustafo</p>
-              <p className=" text-black/50">Admin</p>
+              <p className=" font-black dark:text-foreground">Karimzoda Mustafo</p>
+              <p className=" text-black/50 dark:text-foreground">Admin</p>
             </div>
           </div>
         </div>
